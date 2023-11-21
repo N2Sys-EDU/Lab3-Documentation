@@ -78,6 +78,14 @@ Controller 用于通知路由器网络环境的变化或要求路由器发送距
 
 **你同样不需要实现 Simulator**, 但为了 Simulator 能够正常进行模拟测试，你需要遵循 Simulator 规定的路由器类接口。我们将在 4. 中描述这一内容。
 
+### 2.5. 防火墙
+
+在lab3中实现的路由器需要支持基于SDN的防火墙功能。通常而言，SDN的控制平面上会运行某些访问控制相关的算法，通过对网络流量进行实时监测来定位其中存在的恶意流量，从而根据安全策略采取相应的措施。为了简单起见，在lab3中路由器只需要支持简单的block操作：
+
+1. controller动态地向路由器发送控制报文，要求block/unblock某个地址；
+2. 收到block指令的路由器应当在后续的转发中**直接丢弃**来自相应源地址的报文；
+3. 收到unblock指令的路由器应当解除对相应地址的屏蔽，开始正常转发来自该地址的报文；
+
 ## 3. 技术规范
 
 ### 3.1. 报文格式
@@ -133,6 +141,8 @@ uint8_t TYPE_CONTROL    = 0x02;
 | RELEASE NAT ITEM  | 1        |
 | PORT VALUE CHANGE | 2        |
 | ADD HOST          | 3        |
+| BLOCK ADDR        | 5        |
+| UNBLOCK ADDR      | 6        |
 
 注意该表给出了每个类型对应的 `<type>` 字段的值。所有的控制指令均以 `<type>` 字段作为首个字段。
 
@@ -159,6 +169,14 @@ uint8_t TYPE_CONTROL    = 0x02;
 #### 3.2.4. ADD HOST
 
 该指令格式为 `<type> <port> <ip>` ，其中 `<port>` 为正整数值， `ip` 为一个点分十进制表示的地址，一条合法的指令例如 `3 2 10.0.0.10` 。该条指令通知路由器在 `<port>` 端口上连接了一台 IPv4 地址为 `<ip>` 的 host 。路由器收到该指令后应该更新路由。
+
+#### 3.2.5. BLOCK ADDR
+
+该指令格式为`<type> <ip>` ，其中  `ip` 为一个点分十进制表示的地址，一条合法的指令例如 `5 21.12.33.10` 。该条指令通知路由器在后续的转发过程中直接丢弃来自` 21.12.33.10` 的所有报文。注意被block的地址并不限于外网地址，还有可能是内网地址。
+
+#### 3.2.6. UNBLOCK ADDR
+
+该指令格式为`<type> <ip>` ，其中  `ip` 为一个点分十进制表示的地址，一条合法的指令例如 `6 21.12.33.10` 。该条指令通知路由器在取消对地址` 21.12.33.10` 的block操作，即恢复正常转发来自此地址的所有报文。同一个地址可以被多次block/unblock，转发行为应当按照最后一次block/unblock指令进行。
 
 ## 4. 实现要求
 
@@ -217,6 +235,19 @@ public:
 另外，每个报文的总长度 (header + payload) 不应该超过 16384 字节，我们使用了较大的报文长度以确保你不需要使用多个报文来发送距离向量，数据范围请参见 6.。如果这个限制仍然太小，那么你应该考虑更改实现方式。
 
 > 注意，在 Lab 3 中，我们规定的接口仅给出了入端口号，而没有给出链路另一端对应的路由器，这在某些情况下可能导致路由环路，但由于我们规定了链路权值是正的，因此不会产生环路。
+
+#### 4.1.3. 路由器行为总结
+
+为了避免你刚上手时迷失在前文各种技术细节中，此处总结了router在各种特殊情况下的转发行为：
+
+| condition                    | action           | section |
+| ---------------------------- | ---------------- | ------- |
+| 没有目标地址的路由           | 转发给controller | 4.1     |
+| 被block的源地址              | 丢弃             | 2.5     |
+| NAT转换时无空闲的公网地址    | 丢弃             | 2.2     |
+| 公网地址转内网地址时无匹配项 | 丢弃             | 2.2     |
+| dv_packet                    | 自定义           | 3.1     |
+| control_packet               | 不检查转发行为   | 3.2     |
 
 ### 4.2. 模拟器工作流程
 
@@ -279,9 +310,7 @@ while(1) {
 
 ### 4.3. 测试要求
 
-> 相信你一定发现了 Lab 3 存在漏洞，我们并不阻止你利用漏洞，**一切均以最终测试分数为准**。
-
-> 但请注意，**任何修改 Controller 或 Simulator 的行为将被视为违规，本次 Lab 记 0 分**。
+> 请注意，**任何修改 Controller 或 Simulator 的行为将被视为违规，本次 Lab 记 0 分**。
 
 测试将主要分为三个部分，分别检查路由算法和 NAT 的功能实现是否正确，以及路由算法与 NAT 同时运行时是否正确。对于每一个测试点，你必须通过该测试点中的所有测试才能获得该测试点的分数。
 
@@ -328,7 +357,7 @@ while(1) {
 
 你可以通过执行 `./simulator 0` 来运行 debug 模式。在该模式下，你可以认为 `simulator` 提供了一个运行 `controller` 与 `router` 的模拟器，你可以通过以下指令进行调试
 
-> **注意，下述指令中 2-7 发送的报文仅发送到路由器的输入队列，而没有调用 `router()` ，只有当执行 8/9 时才会调用 `router()` 。而 10/11 则会立即调用 `router()` 并递归跟踪转发路径**。
+> **注意，下述指令中 2-10 发送的报文仅发送到路由器的输入队列，而没有调用 `router()` ，只有当执行 11/12 时才会调用 `router()` 。而 13/14 则会立即调用 `router()` 并递归跟踪转发路径**。
 
 1. `new <port_num> <external_port> <external_addr> <available_addr>` 创建一个新的路由器，参数与 `router_init()` 的参数一致， `simulator` 将会返回创建的路由器的编号（正整数） 。该指令将会创建 router 实例并调用 `router_init()` 。注意，当 `external_port = 0` 时，你仍然需要再输入两个任意字符串，例如 `new 2 0 0 0`
 2. `link <router_id> <router_id> <weight>` 连接由 1 中返回的路由器编号指定的两个路由器，链路权值必须为**正整数**，端口号将由 controller 选择。该指令将会向两个路由器分别发送一条 `CHANGE PORT WEIGHT` 报文
@@ -336,13 +365,15 @@ while(1) {
 4. `weight <router_id> <router_id> <weight>` 修改两个路由器之间的链路权值，链路权值必须为**正整数**。该指令将会向两个路由器分别发送一条 `CHANGE PORT WEIGHT` 报文
 5. `addhost <router_id> <addr>` 在对应路由器上连接一台 host ，其 ip 地址为 `<addr>` 。该指令将会向路由器发送一条 `ADD HOST` 报文
 6. `delhost <addr>` 删除地址为 `<addr>` 的 host 。该指令会向对应路由器发送一条 `<value>` 为 -1 的 `CHANGE PORT WEIGHT` 报文
-7. `release <router_id> <addr>` 表示释放对应路由器上内网 ip 为 `<addr>` 的 NAT 表项
-8. `trigger` 向所有路由器发送一条 `TRIGGER DV SEND` 报文
-9. `n` 使所有路由器从其对应的输入队列获取一个包并执行一次转发
-10. `ns` 不断执行 8 直到网络中不再有报文转发
-11. `hostsend <src_addr> <dst_addr> <payload>` 从 host `<src_addr>` 发送一条目的地址为 `<dst_addr>` 的数据报文， `<payload>` 为可选字段。`simulator` 将会返回路径长度与最后一跳报文的 src, dst, payload 
-12. `extersend <router_id> <src_addr> <dst_addr> <payload>` 从路由器的外网端口发送一条数据报文，源地址必须为外网地址， `<payload>` 为可选字段。`simulator` 将会返回路径长度与最后一跳报文的 src, dst, payload 
-13. `exit` 退出程序
+7. `block <router_id> <addr>` 要求对应的路由器阻止来自`<addr>`的报文
+8. `unblock <router_id> <addr>` 要求对应的路由器取消阻止来自`<addr>`的报文
+9. `release <router_id> <addr>` 表示释放对应路由器上内网 ip 为 `<addr>` 的 NAT 表项
+10. `trigger` 向所有路由器发送一条 `TRIGGER DV SEND` 报文
+11. `n` 使所有路由器从其对应的输入队列获取一个包并执行一次转发
+12. `ns` 不断执行 11 直到网络中不再有报文转发
+13. `hostsend <src_addr> <dst_addr> <payload>` 从 host `<src_addr>` 发送一条目的地址为 `<dst_addr>` 的数据报文， `<payload>` 为可选字段。`simulator` 将会返回路径长度与最后一跳报文的 src, dst, payload 
+14. `extersend <router_id> <src_addr> <dst_addr> <payload>` 从路由器的外网端口发送一条数据报文，源地址必须为外网地址， `<payload>` 为可选字段。`simulator` 将会返回路径长度与最后一跳报文的 src, dst, payload 
+15. `exit` 退出程序
 
 一个运行时的例子可以参考
 
@@ -369,13 +400,19 @@ extersend 1 102.0.0.0 117.117.117.0 Hello
 
 我们保证所有的 `host` 均具有合法且唯一的内网地址，所有路由器的外网端口地址和可用公网地址不重合。
 
+### 5.6. 提交
+
+使用`git push`指令将本地的commit同步到github上的仓库即可自动触发远端测试。
+
+> 注意：在ddl前，远端测试与本地测试相同，因此推荐先在本地通过所有测试后再一起push到远程仓库
+
 ## 6. 分数计算
 
-本次Lab总分 110 分
+本次Lab总分 130 分
 
 部分测试点在 Deadline 前放出，全部测试点会在 Deadline 后统一进行测试。我们会在数据点内容中详细描述所有测试点的测试内容。
 
-同学们可以通过 Github 进行自动化测试（Deadline 前只会看到满分为 90 分）。
+同学们可以通过 Github 进行自动化测试（Deadline 前只会看到满分为 110 分）。
 
 ### 6.1. 数据点
 
@@ -448,6 +485,19 @@ extersend 1 102.0.0.0 117.117.117.0 Hello
         <td>单路由器，含 release 命令，测试 NAT 功能</td>
     </tr>
     <tr>
+        <td rowspan="2">FireWall</td>
+        <td>Block1</td>
+        <td>10</td>
+        <td>是</td>
+        <td>单路由器，基础的block/unblock操作</td>
+    </tr>
+    <tr>
+        <td>Block2</td>
+        <td>10</td>
+        <td>是</td>
+        <td>单路由器，同时测试NAT与block操作</td>
+    </tr>
+    <tr>
         <td rowspan="3">General</td>
         <td>Static</td>
         <td>10</td>
@@ -467,4 +517,3 @@ extersend 1 102.0.0.0 117.117.117.0 Hello
         <td>无特殊限制</td>
     </tr>
 </table>
-
