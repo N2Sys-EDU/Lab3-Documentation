@@ -1,0 +1,79 @@
+<mxfile host="65bd71144e" scale="4" border="0">
+    <diagram id="0X3G2N7tNAbBKsN83A1v" name="Page-1">
+        <mxGraphModel dx="250" dy="133" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="image;html=1;image=img/lib/clip_art/networking/Router_Icon_128x128.png" parent="1" vertex="1">
+                    <mxGeometry x="280" y="239.1" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" parent="1" vertex="1">
+                    <mxGeometry x="87.19999999999999" y="248.2" width="45.6" height="61.800000000000004" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="客户端" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="309.99999999999994" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/NetworkInterfaceCard.svg;" parent="1" vertex="1">
+                    <mxGeometry x="247.99999999999994" y="340" width="44" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/NetworkInterfaceCard.svg;" parent="1" vertex="1">
+                    <mxGeometry x="88.79999999999995" y="340" width="44" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="A&lt;br&gt;192.168.1.2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="389.99999999999994" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="路由器" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="309.99999999999994" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="B&lt;br&gt;192.168.1.1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="389.99999999999994" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="6" target="5" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="390" y="330" as="sourcePoint"/>
+                        <mxPoint x="440" y="280" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/NetworkInterfaceCard.svg;" parent="1" vertex="1">
+                    <mxGeometry x="351.99999999999994" y="340" width="44" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="C&lt;br&gt;10.0.0.2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="334" y="389.99999999999994" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" parent="1" vertex="1">
+                    <mxGeometry x="507.2" y="248.2" width="45.6" height="61.800000000000004" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="服务器" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="309.99999999999994" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/NetworkInterfaceCard.svg;" parent="1" vertex="1">
+                    <mxGeometry x="508.79999999999995" y="340" width="44" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="D&lt;br&gt;10.0.0.3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="389.99999999999994" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="11" target="15" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="620" y="380" as="sourcePoint"/>
+                        <mxPoint x="735.2" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="" style="shape=message;html=1;html=1;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="430.25" y="263.3" width="45" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="shape=flexArrow;endArrow=classic;html=1;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="470" y="248" as="sourcePoint"/>
+                        <mxPoint x="400" y="248" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="ETH D to C&lt;br&gt;IP D to C&lt;br&gt;TCP 34 to 56" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="414" y="300" width="77.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="TCP, A:12 &lt;br&gt;映射到&lt;br&gt;TCP, C:56" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="277.5" y="188.2" width="85" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
