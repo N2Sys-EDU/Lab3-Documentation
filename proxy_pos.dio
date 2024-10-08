@@ -49,9 +49,6 @@
                 <mxCell id="63" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/switch/Switch_24_port_L2.svg;" parent="1" vertex="1">
                     <mxGeometry x="387.8" y="230.9" width="74.4" height="51" as="geometry"/>
                 </mxCell>
-                <mxCell id="66" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/security/Router_VPN.svg;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="350.4" width="55.800000000000004" height="39.6" as="geometry"/>
-                </mxCell>
                 <mxCell id="69" value="" style="endArrow=none;startArrow=classic;html=1;strokeWidth=2;" parent="1" source="49" target="20" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="578.8" y="256.4000000000001" as="sourcePoint"/>
