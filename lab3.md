@@ -220,7 +220,8 @@ int xdp_ingress_func(struct xdp_md* ctx) {
 
 我们使用bpftool和iproute2对程序进行部署，具体部署的代码参见`scripts/load_ebpfs_proxy_client.sh`、`scripts/load_ebpfs_proxy_server.sh`以及`scripts/load_ebpfs_router.sh`。
 
-我们将如下的报文发送到`user/proxy_client_router_xdp.c`上，以添加/删除代理规则
+我们将如下的报文发送到`user/proxy_client_router_xdp.c`上，以添加/删除代理规则。
+对于命中代理规则的报文，应当使用代理进行通信。
 ``` c
 struct ethhdr {
     ...
