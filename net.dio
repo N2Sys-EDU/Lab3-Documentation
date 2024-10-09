@@ -1,98 +1,101 @@
 <mxfile host="65bd71144e" scale="4" border="0">
     <diagram id="2NtxMZlY4JKAmyT0k7ch" name="Page-1">
-        <mxGraphModel dx="432" dy="1069" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1098" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="19" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="60" y="100" width="400" height="230" as="geometry"/>
+                <mxCell id="19" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="214" y="210" width="400" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="17" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="60" y="350" width="400" height="230" as="geometry"/>
+                <mxCell id="17" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="214" y="410" width="400" height="230" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="" style="image;html=1;image=img/lib/clip_art/networking/Router_Icon_128x128.png" vertex="1" parent="1">
-                    <mxGeometry x="220" y="300" width="80" height="80" as="geometry"/>
+                <mxCell id="2" value="" style="image;html=1;image=img/lib/clip_art/networking/Router_Icon_128x128.png" parent="1" vertex="1">
+                    <mxGeometry x="374" y="360" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
-                    <mxGeometry x="97.2" y="440" width="45.6" height="61.800000000000004" as="geometry"/>
+                <mxCell id="3" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" parent="1" vertex="1">
+                    <mxGeometry x="251.2" y="500" width="45.6" height="61.800000000000004" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/VOIP_IP_phone.svg;" vertex="1" parent="1">
-                    <mxGeometry x="385" y="448.1" width="30" height="45.6" as="geometry"/>
+                <mxCell id="4" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/VOIP_IP_phone.svg;" parent="1" vertex="1">
+                    <mxGeometry x="539" y="508.1" width="30" height="45.6" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
-                    <mxGeometry x="237.2" y="440" width="45.6" height="61.800000000000004" as="geometry"/>
+                <mxCell id="5" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" parent="1" vertex="1">
+                    <mxGeometry x="391.2" y="500" width="45.6" height="61.800000000000004" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="Computer A&lt;br&gt;192.168.1.2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="80" y="501.8" width="80" height="30" as="geometry"/>
+                <mxCell id="9" value="Computer A&lt;br&gt;192.168.1.2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="234" y="561.8" width="80" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="192.168.1.1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="310" y="350" width="60" height="30" as="geometry"/>
+                <mxCell id="12" value="192.168.1.1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="444" y="410" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="10.0.0.1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="290" y="290" width="60" height="30" as="geometry"/>
+                <mxCell id="13" value="10.0.0.1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="436.8" y="360" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="Computer B&lt;br&gt;192.168.1.3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="220" y="501.8" width="80" height="30" as="geometry"/>
+                <mxCell id="15" value="Computer B&lt;br&gt;192.168.1.3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="374" y="561.8" width="80" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="16" value="Computer C&lt;br&gt;192.168.1.4" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="360" y="501.79999999999995" width="80" height="30" as="geometry"/>
+                <mxCell id="16" value="Computer C&lt;br&gt;192.168.1.4" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="514" y="561.8" width="80" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="局域网&lt;br&gt;192.168.1.0/24" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="230" y="540" width="60" height="30" as="geometry"/>
+                <mxCell id="18" value="局域网&lt;br&gt;192.168.1.0/24" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="384" y="600" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="广域网&lt;br&gt;10.0.0.0/8" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="230" y="110" width="60" height="30" as="geometry"/>
+                <mxCell id="20" value="广域网&lt;br&gt;10.0.0.0/8" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="384" y="220" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/CDN_Profiles.svg;" vertex="1" parent="1">
-                    <mxGeometry x="226" y="210" width="68" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="22" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="3" target="2">
+                <mxCell id="22" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="3" target="2" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="250" y="250" as="sourcePoint"/>
-                        <mxPoint x="300" y="200" as="targetPoint"/>
+                        <mxPoint x="404" y="310" as="sourcePoint"/>
+                        <mxPoint x="454" y="260" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="23" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="5" target="2">
+                <mxCell id="23" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="5" target="2" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="152.80000000000007" y="459.5820000000001" as="sourcePoint"/>
-                        <mxPoint x="230" y="387.4000000000001" as="targetPoint"/>
+                        <mxPoint x="306.80000000000007" y="519.5820000000001" as="sourcePoint"/>
+                        <mxPoint x="384" y="447.4000000000001" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="24" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="4" target="2">
+                <mxCell id="24" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="4" target="2" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="270" y="450" as="sourcePoint"/>
-                        <mxPoint x="270" y="390" as="targetPoint"/>
+                        <mxPoint x="424" y="510" as="sourcePoint"/>
+                        <mxPoint x="424" y="450" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="25" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="2" target="21">
+                <mxCell id="25" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="2" target="32" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="310.00000000000006" y="282.18200000000013" as="sourcePoint"/>
-                        <mxPoint x="387.2" y="210.00000000000009" as="targetPoint"/>
+                        <mxPoint x="464.00000000000006" y="342.18200000000013" as="sourcePoint"/>
+                        <mxPoint x="414" y="310" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="26" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" vertex="1" parent="1">
-                    <mxGeometry x="97.19999999999999" y="160" width="62.400000000000006" height="62.400000000000006" as="geometry"/>
+                <mxCell id="26" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" parent="1" vertex="1">
+                    <mxGeometry x="251.2" y="270" width="62.400000000000006" height="62.400000000000006" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" vertex="1" parent="1">
-                    <mxGeometry x="377.59999999999997" y="160" width="62.400000000000006" height="62.400000000000006" as="geometry"/>
+                <mxCell id="27" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" parent="1" vertex="1">
+                    <mxGeometry x="531.5999999999999" y="270" width="62.400000000000006" height="62.400000000000006" as="geometry"/>
                 </mxCell>
-                <mxCell id="28" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="27" target="21">
+                <mxCell id="28" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="27" target="32" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="270" y="310" as="sourcePoint"/>
-                        <mxPoint x="270" y="260" as="targetPoint"/>
+                        <mxPoint x="424" y="370" as="sourcePoint"/>
+                        <mxPoint x="448" y="281.13440860215053" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="29" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="26" target="21">
+                <mxCell id="29" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="26" target="32" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="387.5999999999999" y="185.6258064516129" as="sourcePoint"/>
-                        <mxPoint x="304" y="224.2795698924731" as="targetPoint"/>
+                        <mxPoint x="541.5999999999999" y="245.6258064516129" as="sourcePoint"/>
+                        <mxPoint x="380" y="279.97568389057756" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="30" value="Computer D&lt;br&gt;10.0.0.2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="93.4" y="120" width="70" height="30" as="geometry"/>
+                <mxCell id="30" value="Computer D&lt;br&gt;10.0.0.2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="243.60000000000002" y="240" width="70" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="Computer E&lt;br&gt;10.0.0.3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="373.8" y="120" width="70" height="30" as="geometry"/>
+                <mxCell id="31" value="Computer E&lt;br&gt;10.0.0.3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="524" y="240" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/switch/Switch_24_port_L2.svg;" vertex="1" parent="1">
+                    <mxGeometry x="376.8" y="275.7" width="74.4" height="51" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="路由器" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=16;" vertex="1" parent="1">
+                    <mxGeometry x="384" y="385" width="60" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

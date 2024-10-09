@@ -35,9 +35,6 @@ Lab3分为两个部分：
 如果该报文是一个代理客户端改写的，到达代理服务器的报文，那么该报文会被代理服务器再次改写，然后转发到原本的目的地。
 其他广域网服务器发出的报文会经过代理服务器改写，经过NAT发回到某个代理客户端，改写后递交给客户端上的应用程序。
 
-> 注意事项：
-> 1. 任何对报文的修改都需要对应的修改其校验和
-
 ### 2.1 NAT
 
 对于存在广域网端口的路由器，它需要支持NAT功能。
@@ -168,56 +165,92 @@ D回复报文时，报文会被首先发送给E。
 
 ## 4. 技术规范
 
-你可以修改/添加的文件仅限于`user/`目录下的内容。
-一些需要的头文件已经写在了`user/common.h`中。
-我们只需要你的实现支持UDP和TCP。
-在改写的过程中，我们要求IP和TCP的校验和保持正确。
-UDP的校验和可以直接设置为0。
+接下来你需要为每个模块实现一个函数，每个函数会传入一个参数，参数中包含了报文的信息。
+你可以在函数中对报文进行处理。
+根据返回值的不同，你可以选择性的让报文通过/丢弃/转发。
+
+如果一个程序部署在某个设备上，处理的是离开这个设备的报文，那么函数格式如下：
+``` c
+int any_name(struct __sk_buff* skb) {
+    void *data = (void *)(long)skb->data; // 报文的头部
+    void *data_end = (void *)(long)skb->data_end; // 报文的结尾
+
+    struct ethhdr *eth = data; // 以太网头
+    // TODO 你的程序
+    return TC_ACT_OK; // 发送该报文
+    return TC_ACT_SHOT; // 丢弃该报文
+}
+```
+如果一个程序部署在某个设备上，处理的是即将到达这个设备的报文，那么函数格式如下：
+``` c
+int any_name(struct xdp_md* ctx) f{
+    void* data_end = (void*)(long)ctx->data_end; // 报文的头部
+    void* data = (void*)(long)ctx->data; // 报文的尾部
+
+    struct ethhdr* eth = data; // 以太网头
+    // TODO 你的程序
+    return XDP_PASS; // 将修改后的报文接收进来
+    return XDP_DROP; // 将报文丢弃
+    return XDP_TX; // 将修改后的报文从来的地方发回去
+}
+```
+你需要实现的是，其中**你的程序**的部分，你需要根据不同模块的需求实现其中的代码。
+一些辅助函数和开发技巧参见**扩展阅读：ebpf**。
+
+> 你可以修改/添加的文件仅限于`user/`目录下的内容。
+> 一些需要的头文件已经写在了`user/common.h`中。
+> 我们只需要你的实现支持UDP和TCP。
+> 在改写的过程中，我们要求IP和TCP的校验和保持正确。
+> UDP的校验和可以直接设置为0。
 
 ### 4.1 NAT
 
-NAT的程序分为两个，分别为`user/nat_xdp.c`和`user/nat_tc.c`。
-`user/nat_xdp.c`将被部署在router的链接广域网的接口的xdp上，用于改写来自广域网的报文。
-`user/nat_tc.c`将被部署在router的链接广域网的接口的tc egress上，用于改写去往广域网的报文。
+NAT的两个模块的代码，分别为`user/nat_module_1.c`和`user/nat_module_2.c`。
 
+`user/nat_module_1.c`将被部署在路由器上，捕获离开路由器，即将进入广域网的报文。
 代码的入口如下：
 ``` c
-// user/nat_xdp.c
+// user/nat_module_1.c
 SEC("xdp_ingress")
 int xdp_ingress_func(struct xdp_md* ctx) {
     return XDP_PASS;
 }
 ```
+所有即将离开路由器，进入广域网的报文都将调用该函数，报文的信息存放在`struct xdp_md* ctx`结构体中。
+你可以在该函数中对报文进行改写，然后再发往广域网。
 
+`user/nat_module_2.c`将被部署在路由器上，捕获所有来自广域网的报文。
+代码的入口如下：
 ``` c
-// user/nat_tc.c
+// user/nat_module_2.c
 SEC("tc_egress")
 int tc_egress_func(struct __sk_buff* skb) {
     return TC_ACT_OK;
 }
 ```
+所有来自广域网的报文都将调用该函数，报文的信息存放在`struct __sk_buff* skb`结构体中。
+你可以在该函数中对报文进行改写，再交给路由器。
+路由器会根据你改写后的内容进行转发。
 
-我们使用bpftool和iproute2对程序进行部署，具体部署的代码参见`scripts/load_ebpfs_router.sh`。
-我们允许你在代码中使用pinning map实现不同ebpf程序之间的map共享。
+### 4.2 代理客户端
 
-### 4.2 代理
+代理客户端的两个模块的代码分别为`user/proxy_client_module_1.c`和`user/proxy_client_module_2.c`。
 
-代理的程序分为三个：`user/proxy_client_router_xdp.c`、`user/proxy_client_xdp.c`以及`user/proxy_server_xdp.c`。
-`user/proxy_client_router_xdp.c`部署在路由器和局域网机器连接的XDP上，用以改写要被代理的报文。
-`user/proxy_server_xdp.c`部署在代理服务器到广域网接口的XDP上，用以改写代理相关的报文，以实现代理。
-`user/proxy_client_xdp.c`部署在局域网机器和路由器连接的XDP上，用以解包来自代理服务器的代理报文。
-
-**我们不要求你实现XDP中报文分段，即，我们保证所有报文在增加`sizeof(iphdr) + sizeof(udphdr)`长度后，仍然不超过MTU**
-
+`user/proxy_client_module_1.c`将被部署在路由器上，拦截所有从局域网客户端发往路由器的报文。
 代码的入口如下：
 ``` c
-// user/proxy_client_router_xdp.c
+// user/proxy_client_module_1.c
 SEC("xdp_ingress")
 int xdp_ingress_func(struct xdp_md* ctx) {
     return XDP_PASS;
 }
 ```
+所有来自客户端的报文都将调用该函数，报文的信息存放在`struct xdp_md* ctx`结构体中。
+你可以在这里对报文进行改写，再交给路由器。
+路由器会根据你改写后的内容进行转发。
 
+`user/proxy_client_module_2.c`将被部署在每个局域网机器上，拦截所有从路由器发往客户端的报文。
+代码的入口如下：
 ``` c
 // user/proxy_client_xdp.c
 SEC("xdp_ingress")
@@ -225,22 +258,11 @@ int xdp_ingress_func(struct xdp_md* ctx) {
     return XDP_PASS;
 }
 ```
+所有来自路由器的报文都将调用该函数，报文的信息存放在`struct xdp_md* ctx`结构体中。
+你可以在函数中改写相关的报文，在改写后再交给客户端的协议栈进行处理。
 
-``` c
-// user/proxy_server.c
-
-#define DST_IP 0x0300000a                               // 目标IP地址一定为 10.0.0.3
-#define DST_ETH 0x02, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6      // 目标IP地址对应的Ethernet地址 一定为 0x02, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6
-
-SEC("xdp_ingress")
-int xdp_ingress_func(struct xdp_md* ctx) {
-    return XDP_PASS;
-}
-```
-
-我们使用bpftool和iproute2对程序进行部署，具体部署的代码参见`scripts/load_ebpfs_proxy_client.sh`、`scripts/load_ebpfs_proxy_server.sh`以及`scripts/load_ebpfs_router.sh`。
-
-我们将如下的报文发送到`user/proxy_client_router_xdp.c`上，以添加/删除代理规则。
+我们将如下的报文从客户端发送到路由器，报文将被`user/proxy_client_module_1.c`截获。
+通过解析报文的内容添加/删除代理规则。
 对于命中代理规则的报文，应当使用代理进行通信。
 ``` c
 struct ethhdr {
@@ -258,7 +280,26 @@ struct tcp/udphdr {
     uint16_t dest;                              // 规则的目标端口
 }
 ```
-相关的结构体包括`struct ethhdr, struct iphdr, struct tcphdr, struct udphdr`均在`netinet`头中有完整的定义。
+> 相关的结构体包括`struct ethhdr, struct iphdr, struct tcphdr, struct udphdr`均在`netinet`头中有完整的定义。
+
+### 4.3 代理服务端
+
+代理服务端模块的代码为`user/proxy_server_module.c`。
+该模块部署在代理服务器上，拦截所有发往代理服务器的报文。
+``` c
+// user/proxy_server.c
+
+#define DST_IP 0x0300000a                               // 目标IP地址一定为 10.0.0.3
+#define DST_ETH 0x02, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6      // 目标IP地址对应的Ethernet地址 一定为 0x02, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6
+
+SEC("xdp_ingress")
+int xdp_ingress_func(struct xdp_md* ctx) {
+    return XDP_TX;
+}
+```
+你需要对报文进行修改然后进行转发。
+
+> 我们使用bpftool和iproute2对程序进行部署，具体部署的代码参见`scripts/load_ebpfs_proxy_client.sh`、`scripts/load_ebpfs_proxy_server.sh`以及`scripts/load_ebpfs_router.sh`。
 
 ## 5. 本地运行与测试
 
