@@ -198,7 +198,7 @@ int any_name(struct xdp_md* ctx) f{
 一些辅助函数和开发技巧参见**扩展阅读：ebpf**。
 
 > 你可以修改/添加的文件仅限于`user/`目录下的内容。
-> 一些需要的头文件已经写在了`user/common.h`中。
+> 一些需要的头文件已经写在了`test_utils/common.h`中。
 > 我们只需要你的实现支持UDP和TCP。
 > 在改写的过程中，我们要求IP和TCP的校验和保持正确。
 > UDP的校验和可以直接设置为0。
@@ -301,6 +301,154 @@ int xdp_ingress_func(struct xdp_md* ctx) {
 
 > 我们使用bpftool和iproute2对程序进行部署，具体部署的代码参见`scripts/load_ebpfs_proxy_client.sh`、`scripts/load_ebpfs_proxy_server.sh`以及`scripts/load_ebpfs_router.sh`。
 
-## 5. 本地运行与测试
+## 5. 运行与测试
+
+### 5.0 本地运行环境要求
+
+> 我们建议同学们在clab平台上运行自己的测试，而不是在本地进行测试。
+> 我们会提供用于本地测试需求的操作系统和软件包信息。
+> 我们仅针对clab平台运行测试提供支持。
+
+操作系统：Linux, Kernel版本>=5.15
+软件包：
+* llvm(clang-15)：用于编译ebpf程序
+* libbpf：用于编译ebpf程序
+* kernel-headers：用于编译ebpf程序
+* bpftool：用于部署ebpf程序
+* iproute2：用于部署ebpf程序
+* cmake：用于运行测试
+
+### 5.1 获取仓库
+
+1. 从远程仓库 clone 
+2. 在根目录中执行 `git submodule update --init`
+3. 在根目录中执行 `git submodule update --remote`
+4. 在根目录中执行 `mkdir build`
+
+执行完成后，你的目录树应当如下：
+
+```
+/根目录
+    /build
+    /test_utils
+        /scripts
+        /src
+    /scripts
+    /user
+    /CMakeLists.txt
+```
+
+### 5.2 编译测试程序
+
+在`/根目录/build`中执行`cmake .. && cmake --build .` ，这将编译本地测试程序
+
+注意，若测试程序发生更新，请执行如下指令获取最新的测试程序（我们会在教学网和微信群进行通知）：
+
+在根目录中执行 `git submodule update --remote` 即可更新测试程序代码，而不会影响到你的代码。
+
+### 5.3 运行测试程序
+
+在`/根目录/build`中执行`./Lab3_ebpf`即可运行全部测试。
+
+你可以通过参数指定特定测试点进行测试，使用方式与 Lab 1 一致。
+
+> 测试用脚本在`/根目录/test_utils/scripts`下。如果本地测试无法执行，你可以将同名文件放置在`/根目录/scripts`中。执行时将使用同名的`/根目录/scripts`中的脚本执行（该替换操作仅为方便同学本地运行设计，在提交测试时无法使用）。
+
+### 5.4 提交
 
 ## 6. 分数计算
+
+本次Lab总分 110 分
+
+部分测试点在 Deadline 前放出，全部测试点会在 Deadline 后统一进行测试。我们会在数据点内容中详细描述所有测试点的测试内容。
+
+同学们可以通过 Github 进行自动化测试（Deadline 前只会看到满分为 80 分）。
+
+### 6.1. 数据点
+
+每一个测试点名由 `${类别}.${测试点名称}` 构成
+
+<table>
+    <tr>
+        <td>类别</td>
+        <td>测试点名称</td>
+        <td>分数占比</td>
+        <td>ddl 前放出</td>
+        <td>数据点内容</td>
+    </tr>
+    <tr>
+        <td rowspan="5">Basic</td>
+        <td>Env</td>
+        <td>0</td>
+        <td>是</td>
+        <td>测试运行环境是否正常</td>
+    </tr>
+    <tr>
+        <td>NAT_UDP</td>
+        <td>10</td>
+        <td>是</td>
+        <td>单流测试TCP NAT功能</td>
+    </tr>
+    <tr>
+        <td>NAT_UDP</td>
+        <td>10</td>
+        <td>是</td>
+        <td>单流测试UDP NAT功能</td>
+    </tr>
+    <tr>
+        <td>ProxyAdd</td>
+        <td>10</td>
+        <td>是</td>
+        <td>添加一条代理规则后，是否正常通信（包括代理和不被代理的流）</td>
+    </tr>
+    <tr>
+        <td>ProxyDel</td>
+        <td>10</td>
+        <td>是</td>
+        <td>删除代理规则后，是否正常通信（包括代理和不被代理的流）</td>
+    </tr>
+    <tr>
+        <td rowspan="4">Multiflow</td>
+        <td>TCP_NAT</td>
+        <td>10</td>
+        <td>是</td>
+        <td>多流测试TCP NAT功能</td>
+    </tr>
+    <tr>
+        <td>UDP_NAT</td>
+        <td>10</td>
+        <td>是</td>
+        <td>多流测试UDP NAT功能</td>
+    </tr>
+    <tr>
+        <td>ProxyAdd</td>
+        <td>10</td>
+        <td>是</td>
+        <td>添加多条代理规则后，是否正常通信（包括代理和不被代理的流）</td>
+    </tr>
+    <tr>
+        <td>ProxyDel</td>
+        <td>10</td>
+        <td>是</td>
+        <td>随机添加删除多条代理规则后，是否正常通信（包括代理和不被代理的流）</td>
+    </tr>
+    <tr>
+        <td rowspan="3">Redis</td>
+        <td>PUT</td>
+        <td>10</td>
+        <td>否</td>
+        <td>添加代理后，测试Redis PUT操作是否正常工作</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>10</td>
+        <td>否</td>
+        <td>添加代理后，测试Redis GET操作是否正常工作</td>
+    </tr>
+    <tr>
+        <td>General</td>
+        <td>10</td>
+        <td>否</td>
+        <td>添加代理后，随机发起GET/PUT操作</td>
+    </tr>
+</table>
