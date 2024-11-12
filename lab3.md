@@ -311,12 +311,20 @@ int xdp_ingress_func(struct xdp_md* ctx) {
 
 操作系统：Linux, Kernel版本>=5.15
 软件包：
-* llvm(clang-15)：用于编译ebpf程序
+* clang-15：用于编译ebpf程序
 * libbpf：用于编译ebpf程序
 * kernel-headers：用于编译ebpf程序
 * bpftool：用于部署ebpf程序
 * iproute2：用于部署ebpf程序
 * cmake：用于运行测试
+
+在Clab平台中执行
+
+``` bash
+sudo apt update
+sudo apt install clang-15 libbpf-dev linux-headers-$(uname -r) cmake linux-tools-common iproute2 linux-tools-$(uname -r) hping3
+sudo ln -s /usr/bin/clang++-15 /usr/bin/g++
+```
 
 ### 5.1 获取仓库
 
@@ -324,6 +332,7 @@ int xdp_ingress_func(struct xdp_md* ctx) {
 2. 在根目录中执行 `git submodule update --init`
 3. 在根目录中执行 `git submodule update --remote`
 4. 在根目录中执行 `mkdir build`
+5. 在目录`/根目录/test_utils/scripts/`中执行`chmod a+x ./*`
 
 执行完成后，你的目录树应当如下：
 
@@ -339,14 +348,21 @@ int xdp_ingress_func(struct xdp_md* ctx) {
 ```
 
 ### 5.2 编译测试程序
-
 在`/根目录/build`中执行`cmake .. && cmake --build .` ，这将编译本地测试程序
 
 注意，若测试程序发生更新，请执行如下指令获取最新的测试程序（我们会在教学网和微信群进行通知）：
 
 在根目录中执行 `git submodule update --remote` 即可更新测试程序代码，而不会影响到你的代码。
 
-### 5.3 运行测试程序
+### 5.3 配置测试程序环境
+
+在`/根目录/build`中执行`sudo ./../test_utils/scripts/setup.sh`即可配置测试环境。
+
+**注意该脚本只需要每次开机执行一次。**
+
+在`/根目录/build`中执行`sudo ./../test_utils/scripts/cleanup.sh`即可清除测试环境。
+
+### 5.4 运行测试程序
 
 在`/根目录/build`中执行`./Lab3_ebpf`即可运行全部测试。
 
@@ -354,7 +370,7 @@ int xdp_ingress_func(struct xdp_md* ctx) {
 
 > 测试用脚本在`/根目录/test_utils/scripts`下。如果本地测试无法执行，你可以将同名文件放置在`/根目录/scripts`中。执行时将使用同名的`/根目录/scripts`中的脚本执行（该替换操作仅为方便同学本地运行设计，在提交测试时无法使用）。
 
-### 5.4 提交
+### 5.5 提交
 
 ## 6. 分数计算
 
