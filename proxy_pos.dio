@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" scale="4" border="0">
     <diagram id="obBnj9tYz_bjvrRdq5r0" name="Page-1">
-        <mxGraphModel dx="1144" dy="449" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="813" dy="594" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -8,109 +8,88 @@
                     <mxGeometry x="190" y="200" width="470" height="190" as="geometry"/>
                 </mxCell>
                 <mxCell id="31" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="190" y="410" width="470" height="200" as="geometry"/>
-                </mxCell>
-                <mxCell id="33" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" parent="1" vertex="1">
-                    <mxGeometry x="402.2" y="494.1" width="45.6" height="61.800000000000004" as="geometry"/>
-                </mxCell>
-                <mxCell id="36" value="客户端&lt;br&gt;192.168.1.2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="385" y="561.8" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="190" y="410" width="470" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="41" value="局域网&lt;br&gt;192.168.1.0/24" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="585" y="570" width="60" height="30" as="geometry"/>
+                    <mxGeometry x="585" y="480" width="60" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="42" value="广域网&lt;br&gt;10.0.0.0/8" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="585" y="350.4" width="60" height="30" as="geometry"/>
+                    <mxGeometry x="595" y="355.2" width="60" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="48" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" parent="1" vertex="1">
                     <mxGeometry x="227.2" y="225.2" width="62.400000000000006" height="62.400000000000006" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" parent="1" vertex="1">
-                    <mxGeometry x="578.8" y="225.20000000000002" width="62.400000000000006" height="62.400000000000006" as="geometry"/>
-                </mxCell>
-                <mxCell id="51" value="" style="endArrow=classic;startArrow=classic;html=1;dashed=1;dashPattern=8 8;" parent="1" source="48" target="63" edge="1">
+                <mxCell id="51" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="48" target="88" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="517.5999999999999" y="245.6258064516129" as="sourcePoint"/>
-                        <mxPoint x="356" y="235.47720364741645" as="targetPoint"/>
+                        <mxPoint x="387.79999999999995" y="256.4" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="52" value="目标服务器10.0.0.3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="227.20000000000002" y="290" width="70" height="30" as="geometry"/>
                 </mxCell>
+                <mxCell id="78" value="路由器" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="355.2" width="290" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="上行NAT模块" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="448.0999999999999" y="360" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="92" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;" edge="1" parent="1" source="73" target="77">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="下行NAT模块" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="322.09999999999997" y="360" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="91" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=none;startFill=0;" edge="1" parent="1" source="75" target="72">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" value="上行代理客户端模块" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="437" y="410" width="123" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="客户端&lt;br&gt;192.168.1.2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="470" width="250" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="下行代理客户端模块" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="290" y="410" width="123.2" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" value="" style="endArrow=classic;html=1;exitX=0.796;exitY=-0.011;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="79" target="75">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="420" y="460" as="sourcePoint"/>
+                        <mxPoint x="470" y="410" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="85" value="" style="endArrow=classic;html=1;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="72" target="88">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="420" y="400" as="sourcePoint"/>
+                        <mxPoint x="470" y="350" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="488" y="300"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="86" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="88" target="73">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="420" y="400" as="sourcePoint"/>
+                        <mxPoint x="470" y="350" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="362" y="300"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="87" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="225.2" width="125" height="105.2" as="geometry"/>
+                </mxCell>
                 <mxCell id="53" value="&amp;nbsp;代理服务器&lt;br&gt;10.0.0.4" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="575" y="290" width="70" height="30" as="geometry"/>
+                    <mxGeometry x="543.1" y="287.6" width="95" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" value="" style="endArrow=classic;startArrow=none;html=1;strokeWidth=2;" parent="1" source="20" target="63" edge="1">
+                <mxCell id="88" value="代理服务端" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;fillColor=none;dashed=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="237.35" width="105" height="38.1" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.205;entryY=-0.011;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="77" target="79">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="700" y="360.00200000000007" as="sourcePoint"/>
-                        <mxPoint x="612.7301801801802" y="255" as="targetPoint"/>
+                        <mxPoint x="400" y="440" as="sourcePoint"/>
+                        <mxPoint x="450" y="390" as="targetPoint"/>
                     </mxGeometry>
-                </mxCell>
-                <mxCell id="63" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/switch/Switch_24_port_L2.svg;" parent="1" vertex="1">
-                    <mxGeometry x="387.8" y="230.9" width="74.4" height="51" as="geometry"/>
-                </mxCell>
-                <mxCell id="69" value="" style="endArrow=none;startArrow=classic;html=1;strokeWidth=2;" parent="1" source="49" target="20" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="578.8" y="256.4000000000001" as="sourcePoint"/>
-                        <mxPoint x="462.1999999999998" y="256.4" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="20" value="代理服务端" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="479.99999999999994" y="241.4" width="80" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="70" value="" style="endArrow=classic;html=1;fontColor=#000000;" parent="1" source="68" target="63" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="440" y="380" as="sourcePoint"/>
-                        <mxPoint x="490" y="330" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="450" y="330"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="71" value="" style="endArrow=classic;html=1;fontColor=#000000;" parent="1" source="63" target="68" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="390.6135042735044" y="380.3999999999998" as="sourcePoint"/>
-                        <mxPoint x="390.00168478260855" y="277.09999999999997" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="410" y="330"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="72" value="NAT.模块1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="429.99999999999994" y="350.4" width="80" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="73" value="NAT.模块2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="349.99999999999994" y="350.4" width="80" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="74" value="" style="endArrow=classic;html=1;fontColor=#000000;" parent="1" source="33" target="68" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="449.2735042735044" y="513.2999999999998" as="sourcePoint"/>
-                        <mxPoint x="448.6616847826085" y="410" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="450" y="460"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="75" value="代理客户端.模块1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="440" y="415.2" width="102.2" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="76" value="" style="endArrow=classic;html=1;fontColor=#000000;" parent="1" source="68" target="33" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="446.88461538461524" y="504.0999999999999" as="sourcePoint"/>
-                        <mxPoint x="445.0167224080267" y="425.1999999999998" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="410" y="460"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="77" value="代理客户端.模块2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="311" y="464.1" width="102.2" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="78" value="" style="image;html=1;image=img/lib/clip_art/networking/Router_Icon_128x128.png" vertex="1" parent="1">
-                    <mxGeometry x="397.6" y="372.8" width="54.8" height="54.8" as="geometry"/>
-                </mxCell>
-                <mxCell id="68" value="路由器" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="385" y="385.19999999999993" width="80" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

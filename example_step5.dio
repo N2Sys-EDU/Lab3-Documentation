@@ -1,14 +1,20 @@
 <mxfile host="65bd71144e" scale="4" border="0">
     <diagram id="0X3G2N7tNAbBKsN83A1v" name="Page-1">
-        <mxGraphModel dx="1077" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1098" dy="454" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="" style="image;html=1;image=img/lib/clip_art/networking/Router_Icon_128x128.png" parent="1" vertex="1">
-                    <mxGeometry x="280" y="239.1" width="80" height="80" as="geometry"/>
+                <mxCell id="33" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="655" y="310" width="90" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" parent="1" vertex="1">
-                    <mxGeometry x="87.19999999999999" y="248.2" width="45.6" height="61.800000000000004" as="geometry"/>
+                <mxCell id="32" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="490" y="465" width="90" height="125" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="227.5" y="310" width="182.5" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="310" width="80" height="120" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="客户端" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="70" y="309.99999999999994" width="80" height="30" as="geometry"/>
@@ -40,9 +46,6 @@
                 <mxCell id="12" value="C&lt;br&gt;10.0.0.2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="334" y="389.99999999999994" width="80" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" parent="1" vertex="1">
-                    <mxGeometry x="677.2" y="248.2" width="45.6" height="61.800000000000004" as="geometry"/>
-                </mxCell>
                 <mxCell id="14" value="服务器" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="660" y="309.99999999999994" width="80" height="30" as="geometry"/>
                 </mxCell>
@@ -67,11 +70,8 @@
                         <mxPoint x="654" y="290.00397058823523" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="22" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" parent="1" vertex="1">
-                    <mxGeometry x="450.4" y="470" width="45.6" height="61.800000000000004" as="geometry"/>
-                </mxCell>
                 <mxCell id="23" value="代理服务器" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="433.2" y="531.8" width="80" height="30" as="geometry"/>
+                    <mxGeometry x="495.2" y="561.8" width="80" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="24" value="" style="sketch=0;aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/NetworkInterfaceCard.svg;" parent="1" vertex="1">
                     <mxGeometry x="513.1999999999999" y="481.79999999999995" width="44" height="50" as="geometry"/>
@@ -85,17 +85,17 @@
                         <mxPoint x="644.4" y="440.3227628361858" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="27" value="" style="shape=message;html=1;html=1;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" vertex="1" parent="1">
-                    <mxGeometry x="160" y="263.3" width="45" height="30" as="geometry"/>
+                <mxCell id="27" value="" style="shape=message;html=1;html=1;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="166.25" y="265.1" width="45" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="28" value="" style="shape=flexArrow;endArrow=classic;html=1;" edge="1" parent="1">
+                <mxCell id="28" value="" style="shape=flexArrow;endArrow=classic;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="170" y="248.29999999999995" as="sourcePoint"/>
-                        <mxPoint x="230" y="248.20000000000005" as="targetPoint"/>
+                        <mxPoint x="176.25" y="250.09999999999997" as="sourcePoint"/>
+                        <mxPoint x="236.25" y="250.00000000000006" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="29" value="ETH A to B&lt;br&gt;IP A to D&lt;br&gt;TCP 12 to 34" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="143.75" y="300" width="77.5" height="60" as="geometry"/>
+                <mxCell id="29" value="ETH A to B&lt;br&gt;IP A to D&lt;br&gt;TCP 12 to 34" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="301.8" width="77.5" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
