@@ -249,7 +249,7 @@ int xdp_ingress_func(struct xdp_md* ctx) {
 `user/proxy_client_module_2.c`将被部署在路由器上，拦截所有从路由器发往客户端的报文。
 代码的入口如下：
 ``` c
-// user/proxy_client_xdp.c
+// user/proxy_client_module_2.c
 SEC("tc_egress")
 int tc_egress_func(struct __sk_buff* skb) {
     return TC_ACT_OK;
