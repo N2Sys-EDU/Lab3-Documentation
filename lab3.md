@@ -264,7 +264,7 @@ int tc_egress_func(struct __sk_buff* skb) {
 ``` c
 struct ethhdr {
     ...
-    uint16_t h_proto = 0x0101(添加一个规则)/0x0202(删除一个规则);
+    uint16_t h_proto = 0800;                    // IP头
 };
 struct iphdr {
     ...
@@ -274,6 +274,7 @@ struct iphdr {
 };
 struct tcp/udphdr {
     ...
+    uint16_t src = 123(表示插入一条规则)/124(表示删除一条规则); // 用于区分插入/删除规则
     uint16_t dest;                              // 规则的目标端口
 }
 ```
