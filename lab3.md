@@ -208,21 +208,22 @@ NAT的两个模块的代码，分别为NAT.上行模块(`user/nat_module_1.c`)�
 代码的入口如下：
 ``` c
 // user/nat_module_1.c
-SEC("xdp_ingress")
-int xdp_ingress_func(struct xdp_md* ctx) {
-    return XDP_PASS;
+SEC("tc_egress")
+int tc_egress_func(struct __sk_buff* skb) {
+    return TC_ACT_OK;
 }
 ```
 所有即将离开路由器，进入广域网的报文都将调用该函数，报文的信息存放在`struct xdp_md* ctx`结构体中。
 你可以在该函数中对报文进行改写，然后再发往广域网。
+在实现中，我们认为路由器的广域网恒定为`10.0.0.2`。
 
 `user/nat_module_2.c`将被部署在路由器上，捕获所有来自广域网的报文。
 代码的入口如下：
 ``` c
 // user/nat_module_2.c
-SEC("tc_egress")
-int tc_egress_func(struct __sk_buff* skb) {
-    return TC_ACT_OK;
+SEC("xdp_ingress")
+int xdp_ingress_func(struct xdp_md* ctx) {
+    return XDP_PASS;
 }
 ```
 所有来自广域网的报文都将调用该函数，报文的信息存放在`struct __sk_buff* skb`结构体中。
