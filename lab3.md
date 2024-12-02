@@ -367,7 +367,7 @@ sudo ln -s /usr/bin/clang++-15 /usr/bin/g++
 
 ### 5.4 运行测试程序
 
-在`/根目录/build`中执行`./Lab3_ebpf`即可运行全部测试。
+在`/根目录/build`中执行`sudo ./Lab3_ebpf`即可运行全部测试。
 
 你可以通过参数指定特定测试点进行测试，使用方式与 Lab 1 一致。
 
