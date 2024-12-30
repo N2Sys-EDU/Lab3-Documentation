@@ -122,7 +122,7 @@ Lab3分为两个部分：
 ```
 第二步，我们重新封装该报文为代理报文。
 ```
-|IP from 代理服务器|UDP to 代理服务器|IP to 局域网|TCP/UDP to 局域网|
+|IP from 代理服务器|UDP to 代理客户端|IP to 局域网|TCP/UDP to 局域网|
 ```
 将该报文发出后，该报文会被网络转发回代理客户端。
 
@@ -463,3 +463,29 @@ sudo ln -s /usr/bin/clang++-15 /usr/bin/g++
         <td>混合以上所有的测试点进行测试</td>
     </tr>
 </table>
+
+## 7. 附录(样例): 如何使用`pbf_csum_diff`
+
+注意：阅读本段内容将降低理解man page的难度，建议先阅读man page中的内容，实在无法理解后再来阅读本段内容。
+
+由于`bpf_csum_diff`只支持__u32类型的输入，在修改的内容长度不足时，我们只需要填充我们的修改到4byte即可。以下给出了一个针对TCP校验和修改的例子：
+
+``` c
+struct iphdr *ip = xxx;
+struct tcphdr *tcp = xxx;
+
+ip->daddr = nat_ip->nat_ip;
+__u32 old_ip = key.nat_ip;
+__u32 old_ports = *(__u32*)tcp;
+// 把源地址和目标地址都打包进一个__u32，即使你只修改其中一个，这样做把要修改的数据填充到了4byte，并且是4byte对齐的。
+tcp->dest = nat_ip->nat_port;
+__u32 new_ip = nat_ip->nat_ip;
+__u32 new_ports = *(__u32*)tcp;
+
+__u32 check = (__u32)(~tcp->check);
+check = bpf_csum_diff(&old_ip, 4, &new_ip, 4, check);
+check = bpf_csum_diff(&old_ports, 4, &new_ports, 4, check);
+check = (check & 0xFFFF) + (check >> 16);
+check = (check & 0xFFFF) + (check >> 16);
+tcp->check = ~check;
+```
