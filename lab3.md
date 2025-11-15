@@ -329,7 +329,7 @@ int xdp_ingress_func(struct xdp_md* ctx) {
 ```
 你需要对报文进行修改然后进行转发。
 
-> 我们使用bpftool和iproute2对程序进行部署，具体部署的代码参见`scripts/load_eBPFs_proxy_client.sh`、`scripts/load_eBPFs_proxy_server.sh`以及`scripts/load_eBPFs_router.sh`。
+> 我们使用bpftool和iproute2对程序进行部署，具体部署的代码参见`scripts/load_ebpfs_proxy_client.sh`、`scripts/load_ebpfs_proxy_server.sh`以及`scripts/load_ebpfs_router.sh`。
 
 ## 5. 运行与测试
 
@@ -398,7 +398,7 @@ sudo ln -s /usr/bin/clang++-15 /usr/bin/g++
 
 ### 5.4 运行测试程序
 
-在`/根目录/build`中执行`sudo ./Lab3_eBPF`即可运行全部测试。
+在`/根目录/build`中执行`sudo ./Lab3_ebpf`即可运行全部测试。
 
 你可以通过参数指定特定测试点进行测试，使用方式与 Lab 1 一致。
 
