@@ -1,6 +1,6 @@
 # Lab3
 
-> 请从[北大教学网](https://course.pku.edu.cn)获取本 Lab 任务的 Github 邀请链接, DDL: `2024-10-29 23:59:00`
+> 请从[北大教学网](https://course.pku.edu.cn)获取本 Lab 任务的 Github 邀请链接, DDL: `2026-1-18 23:59:00`
 
 - - -
 
