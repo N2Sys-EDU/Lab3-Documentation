@@ -367,10 +367,8 @@ sudo ln -s /usr/bin/clang++-15 /usr/bin/g++
 ### 5.1 获取仓库
 
 1. 从远程仓库 clone 
-2. 在根目录中执行 `git submodule update --init`
-3. 在根目录中执行 `git submodule update --remote`
-4. 在根目录中执行 `mkdir build`
-5. 在目录`/根目录/test_utils/scripts/`中执行`chmod a+x ./*`
+2. 在根目录中执行 `git submodule update --init --remote`
+3. 在根目录中执行 `mkdir build`
 
 执行完成后，你的目录树应当如下：
 
