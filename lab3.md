@@ -497,7 +497,55 @@ sudo ln -s /usr/bin/clang++-15 /usr/bin/g++
     </tr>
 </table>
 
-## 7. 附录: 如何利用`bpf_csum_diff`更新校验和
+## 7. 提示与帮助
+
+## 7.1 如何调试代码
+
+本Lab使用Linux Network Namespace技术，在单机上模拟多个网络节点之间的传输行为。因此，抓包程序需要到网络空间的内部运行。我们先展示目前实验的Network Namespace设置，希望能帮助大家更方便地调试代码，而不是遇到错误两眼一抹黑。
+
+同时，本小节采用从零开始逐步探索的说明方式，希望能够帮助大家在之后课程中也能自己找到调试的方法。万一助教和目前这位助教一样忘记提示大家怎么调试了呢~
+
+首先，助教在文档`5.3`一节中说，
+
+> 在`/根目录/build`中执行`sudo ./../test_utils/scripts/setup.sh`即可配置测试环境。
+
+我们看一下`setup.sh`的代码就会发现，其中开了5个网络空间`netns`。如果跟着代码画一下拓扑图就会发现是长下面的样子的：
+
+```mermaid
+graph LR
+    %% 节点定义
+    ns1["<b>ns1</b><br/>192.168.1.2"]
+    ns2["<b>ns2</b> <br/>192.168.1.1 | 10.0.0.2"]
+    ns5{{"<b>ns5</b> <br/>Promisc Mode"}}
+    ns3["<b>ns3</b><br/>10.0.0.3"]
+    ns4["<b>ns4</b> <br/>10.0.0.4"]
+
+    %% 连接关系
+    ns1 -- veth1_2:veth2_1 --- ns2
+    ns2 -- veth2_5:veth5_2 --- ns5
+    ns5 -- veth5_3:veth3_5 --- ns3
+    ns5 -- veth5_4:veth4_5 --- ns4
+
+    %% 样式美化
+    style ns5 fill:#f9f,stroke:#333,stroke-width:2px
+    style ns2 fill:#bbf,stroke:#333
+```
+
+一个`ns`就代表一个物理上的主机。对比Lab中描述的网络拓扑和IP地址，可以合理推断`ns1`代表“客户端”，`ns2`代表“路由器”，`ns5`代表“Layer 2”，`ns3`代表“服务器”，`ns4`代表“代理服务端”。
+
+接着，知道每个`ns`代表的机器之后，可以通过`netns`提供的调试命令进入每个`ns`进行抓包。例如，你想抓所有服务器接收和发出的IP包：
+
+```bash
+ip netns exec ns5 tcpdump -i any
+```
+
+大家可以和自己喜欢的大语言模型交互，探索`netns`或`tcpdump`更加精细的用法。
+
+有了这个基础信息，大家就可以观察到，在某些特定的测试点，例如proxy相关的测试点，是否有包到达了代理服务器？代理服务器发出的IP包的包头是否正确？相信他们对你的调试会有很大帮助。
+
+当然，传统的输出调试大法也是非常好用的。`ebpf`提供了如下的宏`bpf_printk`(https://docs.ebpf.io/ebpf-library/libbpf/ebpf/bpf_printk/)。
+
+## 7.2 如何利用`bpf_csum_diff`更新校验和
 
 [关于`bpf_csum_diff`的eBPF官方文档链接](https://docs.ebpf.io/linux/helper-function/bpf_csum_diff/)
 在改写报文时，我们要求IP和TCP的校验和保持正确，因此需要对校验和进行相应的修改。eBPF提供了一个内置函数`bpf_csum_diff`用于计算校验和的差值，从而帮助我们更新校验和。由于这个函数的使用不太直观且文档中解释不足，因此我们对于该函数给出一个例子。
