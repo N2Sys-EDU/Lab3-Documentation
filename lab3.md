@@ -508,7 +508,7 @@ sudo ln -s /usr/bin/clang++-15 /usr/bin/g++
 
 ## 7. 提示与帮助
 
-## 7.1 如何调试代码
+### 7.1 如何调试代码
 
 本Lab使用Linux Network Namespace技术，在单机上模拟多个网络节点之间的传输行为。因此，抓包程序需要到网络空间的内部运行。我们先展示目前实验的Network Namespace设置，希望能帮助大家更方便地调试代码，而不是遇到错误两眼一抹黑。
 
@@ -554,7 +554,7 @@ ip netns exec ns3 tcpdump -i any
 
 当然，传统的输出调试大法也是非常好用的。`ebpf`提供了如下的宏`bpf_printk`(https://docs.ebpf.io/ebpf-library/libbpf/ebpf/bpf_printk/)。
 
-## 7.2 如何利用`bpf_csum_diff`更新校验和
+### 7.2 如何利用`bpf_csum_diff`更新校验和
 
 [关于`bpf_csum_diff`的eBPF官方文档链接](https://docs.ebpf.io/linux/helper-function/bpf_csum_diff/)
 在改写报文时，我们要求IP和TCP的校验和保持正确，因此需要对校验和进行相应的修改。eBPF提供了一个内置函数`bpf_csum_diff`用于计算校验和的差值，从而帮助我们更新校验和。由于这个函数的使用不太直观且文档中解释不足，因此我们对于该函数给出一个例子。
