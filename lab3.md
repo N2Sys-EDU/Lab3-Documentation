@@ -545,7 +545,7 @@ graph LR
 接着，知道每个`ns`代表的机器之后，可以通过`netns`提供的调试命令进入每个`ns`进行抓包。例如，你想抓所有服务器接收和发出的IP包：
 
 ```bash
-ip netns exec ns5 tcpdump -i any
+ip netns exec ns3 tcpdump -i any
 ```
 
 大家可以和自己喜欢的大语言模型交互，探索`netns`或`tcpdump`更加精细的用法。
